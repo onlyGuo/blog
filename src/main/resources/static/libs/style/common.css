@@ -162,7 +162,7 @@ blockquote:before, blockquote:after, q:before, q:after { content: ''; content: n
     margin-right: 10px;
 }
 .banner .user:hover .show-block{
-    height: 140px;
+    height: 100px;
 }
 .banner .user .show-block ul li{
     height: 20px;
@@ -597,4 +597,116 @@ blockquote:before, blockquote:after, q:before, q:after { content: ''; content: n
 }
 .article-content img{
     max-width: 100%;
+}
+.login-bg{
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    bottom: 100vh;
+    top: 0;
+    background-color: rgba(0, 0, 0, .0);
+    display: block;
+    transition: 1s background-color;
+    -moz-transition: 1s background-color;	/* Firefox 4 */
+    -webkit-transition: 1s background-color;	/* Safari 和 Chrome */
+    -o-transition: 1s background-color;	/* Opera */
+}
+.login-bg.show{
+    display: block;
+}
+
+.login-box{
+    width: 400px;
+    height: 358px;
+    background: #25292E;
+    border-radius: 20px;
+    position: fixed;
+    z-index: 2;
+    margin-top: 200px;
+    margin-left: calc(100% / 2 - 180px);
+    display: none;
+    opacity: 0;
+    overflow: hidden;
+    transition: 0.3s ;
+    -moz-transition: 0.3s;	/* Firefox 4 */
+    -webkit-transition: 0.3s;	/* Safari 和 Chrome */
+    -o-transition: 0.3s;	/* Opera */
+}
+.login-bg.show .login-box{
+    display: block;
+}
+.login-box .box-title{
+    text-align: right;
+    margin-right: -15px;
+    margin-top: -15px;
+    font-size: 20px;
+}
+.login-box .box-title span{
+    cursor: pointer;
+}
+.login-box h1{
+    margin-top: 60px;
+    height: 20px;
+    font-size: 20px;
+    font-family: MicrosoftYaHei-Bold, MicrosoftYaHei;
+    font-weight: bold;
+    color: #DCE1E6;
+    line-height: 20px;
+    text-align: center;
+}
+.login-box .box-content{
+    padding: 30px;
+    margin-top: 10px;
+}
+.login-box .box-content input{
+    width: 300px;
+    height: 48px;
+    background: rgba(0, 173, 150, 0);
+    border-radius: 8px;
+    border: 1px solid #373E46;
+    font-size: 14px;
+    color: #8D9399;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 20px;
+    transition: 0.3s ;
+    -moz-transition: 0.3s;	/* Firefox 4 */
+    -webkit-transition: 0.3s;	/* Safari 和 Chrome */
+    -o-transition: 0.3s;	/* Opera */
+}
+.login-box .box-content input:hover{
+    border: 1px solid #52585f;
+}
+.login-box .box-content input:focus{
+    border: 1px solid #52585f;
+}
+.login-box .box-line{
+    background: #373E46;
+    height: 1px;
+}
+.button-group button{
+    float: left;
+    background-color: #25292E;
+    color: #8D9399;
+    cursor: pointer;
+    transition: 0.3s ;
+    -moz-transition: 0.3s;	/* Firefox 4 */
+    -webkit-transition: 0.3s;	/* Safari 和 Chrome */
+    -o-transition: 0.3s;	/* Opera */
+}
+.login-box .button-group{
+    width: calc(100% + 2px);
+    margin-left: -1px;
+}
+.login-box .button-group button{
+    border-right: #373E46 solid 1px;
+    width: calc(100% / 2);
+    height: 68px;
+}
+.button-group button:hover{
+    background-color: #1f2224;
+}
+.button-group button:active{
+    background-color: #25292E;
 }

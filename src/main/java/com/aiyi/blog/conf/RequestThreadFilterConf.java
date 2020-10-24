@@ -2,6 +2,7 @@ package com.aiyi.blog.conf;
 
 import com.aiyi.blog.assets.NoLogin;
 import com.aiyi.blog.entity.User;
+import com.aiyi.blog.service.WebSiteService;
 import com.aiyi.blog.util.cache.CacheUtil;
 import com.aiyi.blog.util.cache.Key;
 import com.aiyi.core.SpringBootApplicationUtil;
@@ -16,6 +17,8 @@ import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -33,6 +36,9 @@ public class RequestThreadFilterConf implements HandlerInterceptor {
 
     protected Logger logger = LoggerFactory.getLogger(RequestThreadFilterConf.class);
 
+    @Resource
+    private WebSiteService webSiteService;
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
 
@@ -45,27 +51,21 @@ public class RequestThreadFilterConf implements HandlerInterceptor {
         }
 
         User loginUser = null;
+        // 这里是认证入口
+        String token = getRequestToken(request);
+        if (!StringUtils.isEmpty(token)){
+            loginUser = CacheUtil.get(Key.as(CommonAttr.CACHE.LOGIN_KEY, token), User.class);
+        }
         if (handler instanceof HandlerMethod){
             HandlerMethod method = (HandlerMethod) handler;
             NoLogin methodAnnotation = method.getMethodAnnotation(NoLogin.class);
-            // 这里是认证入口
-            String token = getRequestToken(request);
-            if (StringUtils.isEmpty(token)){
-                if (null == methodAnnotation){
-                    throw new AccessOAuthException("请先登录");
-                }
 
-            }else{
-                // 解析token
-                loginUser = CacheUtil.get(Key.as("TOKEN", token), User.class);
+            if (null == methodAnnotation){
                 if (null == loginUser){
-                    if (null == methodAnnotation){
-                        throw new AccessOAuthException("登录已过期");
-                    }
+                    throw new AccessOAuthException("请登录");
                 }
             }
         }
-
         String requestId = request.getHeader("requestId");
         if (StringUtils.isEmpty(requestId)){
             requestId = UUID.randomUUID().toString().toUpperCase();
@@ -74,6 +74,7 @@ public class RequestThreadFilterConf implements HandlerInterceptor {
 
 
         // 初始化上下文
+        request.getSession().setAttribute("LOGIN_USER", loginUser);
         initContext(request, loginUser, response);
         return true;
     }
@@ -86,14 +87,14 @@ public class RequestThreadFilterConf implements HandlerInterceptor {
      *          当前用户
      */
     private void initContext(HttpServletRequest request, User user, HttpServletResponse response){
-        HttpSession session = request.getSession();
-        session.setAttribute("ctx", request.getContextPath());
-
+        request.setAttribute("ctx", request.getContextPath());
         if (null != user){
             ThreadUtil.setUserEntity(user);
             ThreadUtil.setUserName(user.getNicker());
             ThreadUtil.setUserId((long) user.getId());
         }
+
+        request.setAttribute("WEB_SITE", webSiteService.getWebSite());
 
 
         logger.info("requestURI:[{}], requestID:[{}], requestUser:[{}], custAddr:[{}]",
@@ -121,6 +122,14 @@ public class RequestThreadFilterConf implements HandlerInterceptor {
         }
         if (StringUtils.isEmpty(token)){
             token = request.getHeader("authorization");
+        }
+        if (StringUtils.isEmpty(token)){
+            Cookie[] cookies = request.getCookies();
+            for (Cookie cookie: cookies){
+                if (null != cookie && "token".equals(cookie.getName())){
+                    token = cookie.getValue();
+                }
+            }
         }
         if (!StringUtils.isEmpty(token)){
             if (token.startsWith("Bearer")){

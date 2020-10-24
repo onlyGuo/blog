@@ -8,30 +8,7 @@
 </head>
 <body class="common-body">
 <div class="banner">
-    <div class="nav burl">
-        <ul>
-            <li class="active">首页</li>
-            <li>后端技术</li>
-            <li>前端技术</li>
-            <li>移动开发</li>
-            <li>随笔</li>
-        </ul>
-    </div>
-    <div class="user">
-        <img src="${ctx}/static/libs/images/avatar.png">
-        楚永固
-        <embed src="${ctx}/static/libs/images/down.svg" class="down">
-        <div>
-            <div style="height: 10px"></div>
-            <div class="show-block burl">
-                <ul>
-                    <li><div class="list-item"><img src="${ctx}/static/libs/images/logout.svg">栏目管理</div></li>
-                    <li><div class="list-item"><img src="${ctx}/static/libs/images/logout.svg">文章管理</div></li>
-                    <li><div class="list-item"><img src="${ctx}/static/libs/images/logout.svg">退出</div></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    <#include "nav.ftl">
 </div>
 <div class="body article-body">
     <div class="home-left" style="position: fixed; top: 90px">
@@ -382,5 +359,8 @@ testBox.add(&quot;jQuery&quot;).remove(&quot;jQuery&quot;);
     </div>
 </div>
 <script src="${ctx}/static/libs/prism/prism.js"></script>
+<script>
+
+</script>
 </body>
 </html>

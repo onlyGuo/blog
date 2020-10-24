@@ -1,404 +1,188 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>后台</title>
-    <link rel="stylesheet" href="${ctx}/static/libs/style/editormd.min.css" />
-</head>
-<body>
-<div id="test-editor">
-    <textarea style="display:none;"># Editor.md
 
-![](https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png)
 
-![](https://img.shields.io/github/stars/pandao/editor.md.svg) ![](https://img.shields.io/github/forks/pandao/editor.md.svg) ![](https://img.shields.io/github/tag/pandao/editor.md.svg) ![](https://img.shields.io/github/release/pandao/editor.md.svg) ![](https://img.shields.io/github/issues/pandao/editor.md.svg) ![](https://img.shields.io/bower/v/editor.md.svg)
-
-**目录 (Table of Contents)**
-```java
-public static void main(String[] args){
-
-}
-```
-[TOCM]
-
-[TOC]
-
-# Heading 1
-## Heading 2
-### Heading 3
-#### Heading 4
-##### Heading 5
-###### Heading 6
-# Heading 1 link [Heading link](https://github.com/pandao/editor.md "Heading link")
-## Heading 2 link [Heading link](https://github.com/pandao/editor.md "Heading link")
-### Heading 3 link [Heading link](https://github.com/pandao/editor.md "Heading link")
-#### Heading 4 link [Heading link](https://github.com/pandao/editor.md "Heading link") Heading link [Heading link](https://github.com/pandao/editor.md "Heading link")
-##### Heading 5 link [Heading link](https://github.com/pandao/editor.md "Heading link")
-###### Heading 6 link [Heading link](https://github.com/pandao/editor.md "Heading link")
-
-#### 标题（用底线的形式）Heading (underline)
-
-This is an H1
-=============
-
-This is an H2
--------------
-
-### 字符效果和横线等
-
-----
-
-~~删除线~~ <s>删除线（开启识别HTML标签时）</s>
-*斜体字*      _斜体字_
-**粗体**  __粗体__
-***粗斜体*** ___粗斜体___
-
-上标：X<sub>2</sub>，下标：O<sup>2</sup>
-
-**缩写(同HTML的abbr标签)**
-
-> 即更长的单词或短语的缩写形式，前提是开启识别HTML标签时，已默认开启
-
-The <abbr title="Hyper Text Markup Language">HTML</abbr> specification is maintained by the <abbr title="World Wide Web Consortium">W3C</abbr>.
-
-### 引用 Blockquotes
-
-> 引用文本 Blockquotes
-
-引用的行内混合 Blockquotes
-
-> 引用：如果想要插入空白换行`即<br />标签`，在插入处先键入两个以上的空格然后回车即可，[普通链接](http://localhost/)。
-
-### 锚点与链接 Links
-
-[普通链接](http://localhost/)
-
-[普通链接带标题](http://localhost/ "普通链接带标题")
-
-直接链接：<https://github.com>
-
-[锚点链接][anchor-id]
-
-[anchor-id]: http://www.this-anchor-link.com/
-
-[mailto:test.test@gmail.com](mailto:test.test@gmail.com)
-
-GFM a-tail link @pandao  邮箱地址自动链接 test.test@gmail.com  www@vip.qq.com
-
-> @pandao
-
-### 多语言代码高亮 Codes
-
-#### 行内代码 Inline code
-
-执行命令：`npm install marked`
-
-#### 缩进风格
-
-即缩进四个空格，也做为实现类似 `<pre>` 预格式化文本 ( Preformatted Text ) 的功能。
-
-            <?php
-        echo "Hello world!";
-    ?>
-
-            预格式化文本：
-
-    | First Header  | Second Header |
-    | ------------- | ------------- |
-    | Content Cell  | Content Cell  |
-    | Content Cell  | Content Cell  |
-
-#### JS代码　
-
-```javascript
-function test() {
-	console.log("Hello world!");
-}
-
-(function(){
-    var box = function() {
-        return box.fn.init();
-    };
-
-    box.prototype = box.fn = {
-        init : function(){
-            console.log('box.init()');
-
-			return this;
-        },
-
-		add : function(str) {
-			alert("add", str);
-
-			return this;
-		},
-
-		remove : function(str) {
-			alert("remove", str);
-
-			return this;
-		}
-    };
-
-    box.fn.init.prototype = box.fn;
-
-    window.box =box;
-})();
-
-var testBox = box();
-testBox.add("jQuery").remove("jQuery");
-```
-
-#### HTML 代码 HTML codes
-
-```html
 <!DOCTYPE html>
 <html>
-    <head>
-        <mate charest="utf-8" />
-        <meta name="keywords" content="Editor.md, Markdown, Editor" />
-        <title>Hello world!</title>
-        <style type="text/css">
-            body{font-size:14px;color:#444;font-family: "Microsoft Yahei", Tahoma, "Hiragino Sans GB", Arial;background:#fff;}
-            ul{list-style: none;}
-            img{border:none;vertical-align: middle;}
-        </style>
-    </head>
-    <body>
-        <h1 class="text-xxl">Hello world!</h1>
-        <p class="text-green">Plain text</p>
-    </body>
-</html>
-```
-
-### 图片 Images
-
-Image:
-
-![](https://pandao.github.io/editor.md/examples/images/4.jpg)
-
-> Follow your heart.
-
-![](https://pandao.github.io/editor.md/examples/images/8.jpg)
-
-> 图为：厦门白城沙滩
-
-图片加链接 (Image + Link)：
-
-[![](https://pandao.github.io/editor.md/examples/images/7.jpg)](https://pandao.github.io/editor.md/images/7.jpg "李健首张专辑《似水流年》封面")
-
-> 图为：李健首张专辑《似水流年》封面
-
-----
-
-### 列表 Lists
-
-#### 无序列表（减号）Unordered Lists (-)
-
-- 列表一
-- 列表二
-- 列表三
-
-#### 无序列表（星号）Unordered Lists (*)
-
-* 列表一
-* 列表二
-* 列表三
-
-#### 无序列表（加号和嵌套）Unordered Lists (+)
-
-+ 列表一
-+ 列表二
-    + 列表二-1
-    + 列表二-2
-    + 列表二-3
-+ 列表三
-    * 列表一
-    * 列表二
-    * 列表三
-
-#### 有序列表 Ordered Lists (-)
-
-1. 第一行
-2. 第二行
-3. 第三行
-
-#### GFM task list
-
-- [x] GFM task list 1
-- [x] GFM task list 2
-- [ ] GFM task list 3
-    - [ ] GFM task list 3-1
-    - [ ] GFM task list 3-2
-    - [ ] GFM task list 3-3
-- [ ] GFM task list 4
-    - [ ] GFM task list 4-1
-    - [ ] GFM task list 4-2
-
-----
-
-### 绘制表格 Tables
-
-| 项目        | 价格   |  数量  |
-| --------   | -----:  | :----:  |
-| 计算机      | $1600   |   5     |
-| 手机        |   $12   |   12   |
-| 管线        |    $1    |  234  |
-
-First Header  | Second Header
-------------- | -------------
-Content Cell  | Content Cell
-Content Cell  | Content Cell
-
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
-
-| Function name | Description                    |
-| ------------- | ------------------------------ |
-| `help()`      | Display the help window.       |
-| `destroy()`   | **Destroy your computer!**     |
-
-| Left-Aligned  | Center Aligned  | Right Aligned |
-| :------------ |:---------------:| -----:|
-| col 3 is      | some wordy text | $1600 |
-| col 2 is      | centered        |   $12 |
-| zebra stripes | are neat        |    $1 |
-
-| Item      | Value |
-| --------- | -----:|
-| Computer  | $1600 |
-| Phone     |   $12 |
-| Pipe      |    $1 |
-
-----
-
-#### 特殊符号 HTML Entities Codes
-
-&copy; &  &uml; &trade; &iexcl; &pound;
-&amp; &lt; &gt; &yen; &euro; &reg; &plusmn; &para; &sect; &brvbar; &macr; &laquo; &middot;
-
-X&sup2; Y&sup3; &frac34; &frac14;  &times;  &divide;   &raquo;
-
-18&ordm;C  &quot;  &apos;
-
-[========]
-
-### Emoji表情 :smiley:
-
-> Blockquotes :star:
-
-#### GFM task lists & Emoji & fontAwesome icon emoji & editormd logo emoji :editormd-logo-5x:
-
-- [x] :smiley: @mentions, :smiley: #refs, [links](), **formatting**, and <del>tags</del> supported :editormd-logo:;
-- [x] list syntax required (any unordered or ordered list supported) :editormd-logo-3x:;
-- [x] [ ] :smiley: this is a complete item :smiley:;
-- [ ] []this is an incomplete item [test link](#) :fa-star: @pandao;
-- [ ] [ ]this is an incomplete item :fa-star: :fa-gear:;
-    - [ ] :smiley: this is an incomplete item [test link](#) :fa-star: :fa-gear:;
-    - [ ] :smiley: this is  :fa-star: :fa-gear: an incomplete item [test link](#);
-
-#### 反斜杠 Escape
-
-\*literal asterisks\*
-
-[========]
-
-### 科学公式 TeX(KaTeX)
-
-$$E=mc^2$$
-
-行内的公式$$E=mc^2$$行内的公式，行内的$$E=mc^2$$公式。
-
-$$x > y$$
-
-$$\(\sqrt{3x-1}+(1+x)^2\)$$
-
-$$\sin(\alpha)^{\theta}=\sum_{i=0}^{n}(x^i + \cos(f))$$
-
-多行公式：
-
-```math
-\displaystyle
-\left( \sum\_{k=1}^n a\_k b\_k \right)^2
-\leq
-\left( \sum\_{k=1}^n a\_k^2 \right)
-\left( \sum\_{k=1}^n b\_k^2 \right)
-```
-
-```katex
-\displaystyle
-    \frac{1}{
-        \Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{
-        \frac25 \pi}} = 1+\frac{e^{-2\pi}} {1+\frac{e^{-4\pi}} {
-        1+\frac{e^{-6\pi}}
-        {1+\frac{e^{-8\pi}}
-         {1+\cdots} }
-        }
-    }
-```
-
-```latex
-f(x) = \int_{-\infty}^\infty
-    \hat f(\xi)\,e^{2 \pi i \xi x}
-    \,d\xi
-```
-
-### 分页符 Page break
-
-> Print Test: Ctrl + P
-
-[========]
-
-### 绘制流程图 Flowchart
-
-```flow
-st=>start: 用户登陆
-op=>operation: 登陆操作
-cond=>condition: 登陆成功 Yes or No?
-e=>end: 进入后台
-
-st->op->cond
-cond(yes)->e
-cond(no)->op
-```
-
-[========]
-
-### 绘制序列图 Sequence Diagram
-
-```seq
-Andrew->China: Says Hello
-Note right of China: China thinks\nabout it
-China-->Andrew: How are you?
-Andrew->>China: I am good thanks!
-```
-
-### End</textarea>
-</div>
-<textarea id="test" style="height: 1000px; width: 100%">
-
-    </textarea>
-<script src="${ctx}/static/libs/script/jquery-2.0.2.js"></script>
-<script src="${ctx}/static/libs/script/editormd.min.js"></script>
-<script type="text/javascript">
-    $(function() {
-        var editor = editormd("test-editor", {
-            width  : "100%",
-            height : "100px",
-            theme : "dark",
-            previewTheme : "dark",
-            editorTheme : "pastel-on-dark",
-            saveHTMLToTextarea : true,
-            path   : "${ctx}/static/libs/editormd/lib/"
-        });
-        setTimeout(() => {
-            $("#test").text(editor.getHTML());
-        }, 1000);
-
-
-    });
-</script>
+<head>
+  <meta charset="utf-8">
+  <title>后台管理 - ${WEB_SITE.name!''}</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="${ctx}/static/libs/layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="${ctx}/static/libs/layuiadmin/style/admin.css" media="all">
+</head>
+<body class="layui-layout-body">
+  
+  <div id="LAY_app">
+    <div class="layui-layout layui-layout-admin">
+      <div class="layui-header">
+        <!-- 头部区域 -->
+        <ul class="layui-nav layui-layout-left">
+          <li class="layui-nav-item layadmin-flexible" lay-unselect>
+            <a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">
+              <i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
+            </a>
+          </li>
+          <li class="layui-nav-item layui-hide-xs" lay-unselect>
+            <a href="${ctx}/" target="_blank" title="前台">
+              <i class="layui-icon layui-icon-website"></i>
+            </a>
+          </li>
+          <li class="layui-nav-item" lay-unselect>
+            <a href="javascript:;" layadmin-event="refresh" title="刷新">
+              <i class="layui-icon layui-icon-refresh-3"></i>
+            </a>
+          </li>
+          <li class="layui-nav-item layui-hide-xs" lay-unselect>
+            <input type="text" placeholder="搜索..." autocomplete="off" class="layui-input layui-input-search" layadmin-event="serach" lay-action="template/search.html?keywords="> 
+          </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
+          
+          <li class="layui-nav-item" lay-unselect>
+            <a lay-href="app/message/index.html" layadmin-event="message" lay-text="消息中心">
+              <i class="layui-icon layui-icon-notice"></i>  
+              
+              <!-- 如果有新消息，则显示小圆点 -->
+              <span class="layui-badge-dot"></span>
+            </a>
+          </li>
+          <li class="layui-nav-item layui-hide-xs" lay-unselect>
+            <a href="javascript:;" layadmin-event="theme">
+              <i class="layui-icon layui-icon-theme"></i>
+            </a>
+          </li>
+          <li class="layui-nav-item layui-hide-xs" lay-unselect>
+            <a href="javascript:;" layadmin-event="note">
+              <i class="layui-icon layui-icon-note"></i>
+            </a>
+          </li>
+          <li class="layui-nav-item layui-hide-xs" lay-unselect>
+            <a href="javascript:;" layadmin-event="fullscreen">
+              <i class="layui-icon layui-icon-screen-full"></i>
+            </a>
+          </li>
+          <li class="layui-nav-item" lay-unselect>
+            <a href="javascript:;">
+              <cite>贤心</cite>
+            </a>
+            <dl class="layui-nav-child">
+              <dd><a lay-href="set/user/info.html">基本资料</a></dd>
+              <dd><a lay-href="set/user/password.html">修改密码</a></dd>
+              <hr>
+              <dd layadmin-event="logout" style="text-align: center;"><a>退出</a></dd>
+            </dl>
+          </li>
+          
+          <li class="layui-nav-item layui-hide-xs" lay-unselect>
+            <a href="javascript:;" layadmin-event="about"><i class="layui-icon layui-icon-more-vertical"></i></a>
+          </li>
+          <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-unselect>
+            <a href="javascript:;" layadmin-event="more"><i class="layui-icon layui-icon-more-vertical"></i></a>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- 侧边菜单 -->
+      <div class="layui-side layui-side-menu">
+        <div class="layui-side-scroll">
+          <div class="layui-logo" lay-href="${ctx}/admin/console">
+            <span>天涯客栈</span>
+          </div>
+          
+          <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
+            <li data-name="home" class="layui-nav-item layui-nav-itemed">
+              <a href="javascript:;" lay-tips="主页" lay-direction="2">
+                <i class="layui-icon layui-icon-home"></i>
+                <cite>主页</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd data-name="console" class="layui-this">
+                  <a lay-href="${ctx}/admin/console">系统状态</a>
+                </dd>
+                <dd data-name="console">
+                  <a lay-href="${ctx}/admin/system">系统设置</a>
+                </dd>
+              </dl>
+            </li>
+            <li data-name="component" class="layui-nav-item">
+              <a href="javascript:;" lay-tips="组件" lay-direction="2">
+                <i class="layui-icon layui-icon-component"></i>
+                <cite>内容管理</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd data-name="grid">
+                  <a lay-href="${ctx}/admin/classify">栏目管理</a>
+                </dd>
+                <dd data-name="button">
+                  <a lay-href="${ctx}/admin/article">文章管理</a>
+                </dd>
+                <dd data-name="form">
+                  <a lay-href="component/button/index2.html">评论管理</a>
+                </dd>
+              </dl>
+            </li>
+            <li data-name="template" class="layui-nav-item">
+              <a href="javascript:;" lay-tips="页面" lay-direction="2">
+                <i class="layui-icon layui-icon-template"></i>
+                <cite>质量控制</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd><a lay-href="template/personalpage.html">脏话过滤</a></dd>
+                <dd><a lay-href="template/addresslist.html">涉政过滤</a></dd>
+                <dd><a lay-href="template/goodslist.html">广告过滤</a></dd>
+                <dd><a lay-href="template/goodslist2.html">防灌水设置</a></dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 页面标签 -->
+      <div class="layadmin-pagetabs" id="LAY_app_tabs">
+        <div class="layui-icon layadmin-tabs-control layui-icon-prev" layadmin-event="leftPage"></div>
+        <div class="layui-icon layadmin-tabs-control layui-icon-next" layadmin-event="rightPage"></div>
+        <div class="layui-icon layadmin-tabs-control layui-icon-down">
+          <ul class="layui-nav layadmin-tabs-select" lay-filter="layadmin-pagetabs-nav">
+            <li class="layui-nav-item" lay-unselect>
+              <a href="javascript:;"></a>
+              <dl class="layui-nav-child layui-anim-fadein">
+                <dd layadmin-event="closeThisTabs"><a href="javascript:;">关闭当前标签页</a></dd>
+                <dd layadmin-event="closeOtherTabs"><a href="javascript:;">关闭其它标签页</a></dd>
+                <dd layadmin-event="closeAllTabs"><a href="javascript:;">关闭全部标签页</a></dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+        <div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="layadmin-layout-tabs">
+          <ul class="layui-tab-title" id="LAY_app_tabsheader">
+            <li lay-id="${ctx}/admin/console" lay-attr="${ctx}/admin/console" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+      <!-- 主体内容 -->
+      <div class="layui-body" id="LAY_app_body">
+        <div class="layadmin-tabsbody-item layui-show">
+          <iframe src="${ctx}/admin/console" frameborder="0" class="layadmin-iframe"></iframe>
+        </div>
+      </div>
+      
+      <!-- 辅助元素，一般用于移动设备下遮罩 -->
+      <div class="layadmin-body-shade" layadmin-event="shade"></div>
+    </div>
+  </div>
+
+  <script src="${ctx}/static/libs/layuiadmin/layui/layui.js"></script>
+  <script>
+  layui.config({
+    base: '${ctx}/static/libs/layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use('index');
+  </script>
 </body>
 </html>
+
+

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,7 +67,17 @@ public class ExceptionHandlerAdvice {
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ResponseBody
     public ResultBean accessOAuthException(Exception e, HttpServletRequest request, HttpServletResponse response) {
-        return ResultBean.error("没有权限.").setCode(HttpStatus.UNAUTHORIZED.value());
+        String header = request.getHeader("Content-Type");
+        if (header != null && header.toLowerCase().contains("application/json")){
+            return ResultBean.error("没有权限.").setCode(HttpStatus.UNAUTHORIZED.value());
+        }else{
+            try {
+                response.sendRedirect(request.getContextPath() + "/");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            return null;
+        }
     }
 
     /**
