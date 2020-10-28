@@ -41,7 +41,7 @@
                             <p>John Stone</p>
                         </div>
                         <div class="title-right">
-                            <h1><a href="javascript:;">${article.title}</a></h1>
+                            <h1><a href="${ctx}/article/${article.id}">${article.title}</a></h1>
                             <p>${article.outline}</p>
                             <div class="line"></div>
                             <div class="title-bottom-bar">
@@ -53,8 +53,22 @@
                         </div>
                     </div>
                 </#list>
-            </div>
 
+                <!-- 分页 -->
+                <div class="page-btns">
+                    <ul>
+                        <#list page.pages as p>
+                            <#if p.abst>
+                                <li><span>···</span></li>
+                            <#elseif p.thisPage>
+                                <li><span class="this-page">${p.num}</span></li>
+                            <#else>
+                                <li><a href="${ctx}/${p.num}-10"><#if p.frist><<#elseif p.last>><#else>${p.num}</#if></a></li>
+                            </#if>
+                        </#list>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
     <script>
@@ -91,6 +105,14 @@
                 homeRight.style.paddingLeft = "505px";
             }
         }
+
+        // if (location.href.concat("-")){
+        //     setTimeout(() => {
+        //         // window.screenY(677);
+        //         window.scroll(0, 500);
+        //     }, 5000);
+        // }
+
 
     </script>
 </body>

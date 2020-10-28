@@ -1,12 +1,21 @@
 package com.aiyi.blog.controller.api;
 
+import com.aiyi.blog.assets.NoLogin;
+import com.aiyi.blog.conf.CommonAttr;
 import com.aiyi.blog.entity.Article;
+import com.aiyi.blog.entity.ArticleComment;
 import com.aiyi.blog.entity.dto.LayerTable;
+import com.aiyi.blog.service.ArticleCommentService;
 import com.aiyi.blog.service.ArticleService;
+import com.aiyi.blog.util.cache.CacheUtil;
+import com.aiyi.blog.util.cache.Key;
 import com.aiyi.core.beans.ResultBean;
+import com.aiyi.core.exception.ValidationException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @Author: 郭胜凯
@@ -20,6 +29,9 @@ public class ApiArticleController {
 
     @Resource
     private ArticleService articleService;
+
+    @Resource
+    private ArticleCommentService articleCommentService;
 
     /**
      * 列出文章列表
@@ -55,6 +67,26 @@ public class ApiArticleController {
             articleService.update(article);
         }
         return ResultBean.success().setResponseBody(article);
+    }
+
+    /**
+     * 发布评论
+     * @param articleId
+     *      文章ID
+     * @param comment
+     *      评论内容
+     * @return
+     */
+    @PostMapping("{articleId}/comment")
+    @NoLogin
+    public ResultBean publishComment(@PathVariable int articleId, @RequestBody ArticleComment comment){
+        comment.setArticleId(articleId);
+        Integer integer = CacheUtil.get(Key.as(CommonAttr.CACHE.VALIDATION_CODE, comment.getValiIndex()), Integer.class);
+        if (null == integer || comment.getValicode() != integer){
+            throw new ValidationException("验证码有误");
+        }
+        articleCommentService.publish(comment);
+        return ResultBean.success();
     }
 
 }

@@ -27,5 +27,10 @@ public interface CommonAttr {
          * 网站设置
          */
         String WEB_SITE = "WEB_SITE";
+
+        /**
+         * 验证码
+         */
+        String VALIDATION_CODE = "VALI_CODE";
     }
 }
