@@ -74,7 +74,7 @@ public class RequestThreadFilterConf implements HandlerInterceptor {
 
 
         // 初始化上下文
-        request.getSession().setAttribute("LOGIN_USER", loginUser);
+        request.setAttribute("LOGIN_USER", loginUser);
         initContext(request, loginUser, response);
         return true;
     }
@@ -88,6 +88,7 @@ public class RequestThreadFilterConf implements HandlerInterceptor {
      */
     private void initContext(HttpServletRequest request, User user, HttpServletResponse response){
         request.setAttribute("ctx", request.getContextPath());
+        request.setAttribute("location", request.getRequestURI());
         if (null != user){
             ThreadUtil.setUserEntity(user);
             ThreadUtil.setUserName(user.getNicker());

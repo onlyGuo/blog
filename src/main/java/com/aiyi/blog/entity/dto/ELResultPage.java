@@ -25,7 +25,10 @@ public class ELResultPage {
     public static ELResultPage createByResultPage(ResultPage<?> resultPage){
         ELResultPage elResultPage = new ELResultPage();
         LinkedList<PageNum> list = new LinkedList<>();
-
+        if (resultPage.getTotalPageSize() == 0){
+            elResultPage.setPages(list);
+            return elResultPage;
+        }
         // 初始开始页码和结束页码
         int startNum = 1;
         int endNum = 12;

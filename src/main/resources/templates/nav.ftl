@@ -2,11 +2,22 @@
 <link href="${ctx}/static/libs/style/ajax/ajax.css" rel="stylesheet">
 <div class="nav burl">
     <ul>
-        <li class="active">首页</li>
-        <li>后端技术</li>
-        <li>前端技术</li>
-        <li>移动开发</li>
-        <li>随笔</li>
+        <#if classifyId?? >
+            <li><a href="${ctx}/">首页</a></li>
+            <#list classifyList as classify>
+                <#if classifyId == classify.id>
+                    <li class="active"><a href="${ctx}/classify/${classify.id}">${classify.name}</a></li>
+                <#else>
+                    <li><a href="${ctx}/classify/${classify.id}">${classify.name}</a></li>
+                </#if>
+            </#list>
+        <#else>
+            <li class="active"><a href="${ctx}/">首页</a></li>
+            <#list classifyList as classify>
+                <li><a href="${ctx}/classify/${classify.id}">${classify.name}</a></li>
+            </#list>
+        </#if>
+
     </ul>
 </div>
 <#if LOGIN_USER ??>

@@ -34,7 +34,7 @@ public class StringHtmlUtil {
         htmlStr = m_html.replaceAll("");
         htmlStr = htmlStr.trim().replace("　", "");
         if (htmlStr.length() > 255){
-            htmlStr = htmlStr.substring(0, htmlStr.length() - 3);
+            htmlStr = htmlStr.substring(0, 255 - 3) + "...";
         }
         return htmlStr;
     }

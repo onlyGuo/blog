@@ -2,8 +2,11 @@ package com.aiyi.blog.controller;
 
 import com.aiyi.blog.assets.NoLogin;
 import com.aiyi.blog.entity.Article;
+import com.aiyi.blog.entity.Classify;
 import com.aiyi.blog.service.ArticleCommentService;
 import com.aiyi.blog.service.ArticleService;
+import com.aiyi.blog.service.ClassifyService;
+import com.aiyi.core.beans.ResultPage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +28,9 @@ public class ArticleController {
     @Resource
     private ArticleCommentService articleCommentService;
 
+    @Resource
+    private ClassifyService classifyService;
+
 
     /**
      * 文章详情页面
@@ -42,6 +48,8 @@ public class ArticleController {
         model.addAttribute("article", article);
         model.addAttribute("validationIndex", UUID.randomUUID().toString().replace("-", ""));
         model.addAttribute("comments", articleCommentService.list(articleId));
+        ResultPage<Classify> classifyList = classifyService.list(null, 1, 1, Integer.MAX_VALUE);
+        model.addAttribute("classifyList", classifyList.getList());
         return "article";
     }
 
