@@ -45,6 +45,10 @@ public class ArticleComment extends PO {
     @FieldName(name = "create_time")
     private Date createTime;
 
+    private int status;
+
+    private boolean deleted;
+
     @TempField
     List<ArticleComment> subList;
 
@@ -53,6 +57,9 @@ public class ArticleComment extends PO {
 
     @TempField
     private String valiIndex;
+
+    @TempField
+    private String title;
 
     public int getId() {
         return id;
@@ -143,5 +150,29 @@ public class ArticleComment extends PO {
 
     public void setValiIndex(String valiIndex) {
         this.valiIndex = valiIndex;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

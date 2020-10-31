@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import java.io.ByteArrayOutputStream;
 
 @Controller
 @RequestMapping("admin")
@@ -103,4 +104,24 @@ public class AdminController {
         model.addAttribute("classifys", article.getClassifyList());
         return "admin/article-from";
     }
+
+    /**
+     * 评论管理页
+     * @return
+     */
+    @RequestMapping("comment")
+    public String comment(Model model){
+        return "admin/comment";
+    }
+
+    /**
+     * 规则过滤
+     * @param model
+     * @return
+     */
+    @RequestMapping("rule")
+    public String rule(Model model){
+        return "admin/rule";
+    }
+
 }

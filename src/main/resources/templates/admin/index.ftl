@@ -33,9 +33,9 @@
               <i class="layui-icon layui-icon-refresh-3"></i>
             </a>
           </li>
-          <li class="layui-nav-item layui-hide-xs" lay-unselect>
-            <input type="text" placeholder="搜索..." autocomplete="off" class="layui-input layui-input-search" layadmin-event="serach" lay-action="template/search.html?keywords="> 
-          </li>
+<#--          <li class="layui-nav-item layui-hide-xs" lay-unselect>-->
+<#--            <input type="text" placeholder="搜索..." autocomplete="off" class="layui-input layui-input-search" layadmin-event="serach" lay-action="template/search.html?keywords="> -->
+<#--          </li>-->
         </ul>
         <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
           
@@ -118,7 +118,7 @@
                   <a lay-href="${ctx}/admin/article">文章管理</a>
                 </dd>
                 <dd data-name="form">
-                  <a lay-href="component/button/index2.html">评论管理</a>
+                  <a lay-href="${ctx}/admin/comment">评论管理</a>
                 </dd>
               </dl>
             </li>
@@ -128,10 +128,9 @@
                 <cite>质量控制</cite>
               </a>
               <dl class="layui-nav-child">
-                <dd><a lay-href="template/personalpage.html">脏话过滤</a></dd>
-                <dd><a lay-href="template/addresslist.html">涉政过滤</a></dd>
-                <dd><a lay-href="template/goodslist.html">广告过滤</a></dd>
-                <dd><a lay-href="template/goodslist2.html">防灌水设置</a></dd>
+                <dd><a lay-href="${ctx}/admin/rule">简单规则</a></dd>
+                <dd><a lay-href="${ctx}/admin/rule">高级过滤</a></dd>
+                <dd><a lay-href="${ctx}/admin/rule">防灌水设置</a></dd>
               </dl>
             </li>
           </ul>

@@ -82,7 +82,11 @@
                             </div>
                             <div class="comment-right">
                                 <p class="comment-content">
-                                    ${comment.content}
+                                    <#if comment.deleted>
+                                        <span style="text-decoration:line-through; color: #8A8F99; background-color: #33373D; padding: 5px; display: inline-block; border-radius: 3px">该评论已被删除</span>
+                                    <#else>
+                                        ${comment.content}
+                                    </#if>
                                 </p>
                                 <#if comment.subList?size != 0>
                                     <div class="box comment-sub-box">
@@ -97,7 +101,12 @@
                                                 </#if>
                                             </div>
                                             <p>
-                                                ${subComment.content}
+                                                <#if subComment.deleted>
+                                                    <span style="text-decoration:line-through; color: #8A8F99; background-color: #33373D; padding: 5px; display: inline-block; border-radius: 3px">该评论已被删除</span>
+                                                <#else>
+                                                    ${subComment.content}
+                                                </#if>
+
                                             </p>
                                             <div class="comment-btn-bar" style="margin-bottom: 10px">
                                                 <a class="small-text" href="javascript:;" onclick="gotoCommen({id: '${subComment.id}', nicker: '${subComment.nicker}'})"> <img class="icon" src="${ctx}/static/libs/images/comment.svg"> 回复</a>

@@ -2,9 +2,13 @@ package com.aiyi.blog.service.impl;
 
 import com.aiyi.blog.dao.ArticleCommentDao;
 import com.aiyi.blog.dao.ArticleDao;
+import com.aiyi.blog.entity.Article;
 import com.aiyi.blog.entity.ArticleComment;
 import com.aiyi.blog.service.ArticleCommentService;
+import com.aiyi.core.beans.LeftJoin;
 import com.aiyi.core.beans.Method;
+import com.aiyi.core.beans.ResultPage;
+import com.aiyi.core.beans.WherePrams;
 import com.aiyi.core.exception.ValidationException;
 import com.aiyi.core.sql.where.C;
 import org.springframework.stereotype.Service;
@@ -81,5 +85,38 @@ public class ArticleCommentServiceImpl implements ArticleCommentService {
         articleComment.setContent(articleComment.getContent().replace("<", "&lt;")
                 .replace(">", "&gt;"));
         articleCommentDao.add(articleComment);
+    }
+
+    @Override
+    public ResultPage<ArticleComment> list(String keyword, Integer status, int page, int limit) {
+        WherePrams where = Method.where(ArticleComment::isDeleted, C.EQ, false);
+        if (null != status && 2 != status){
+            where.and(ArticleComment::getStatus, C.EQ, status);
+        }
+        if (!StringUtils.isEmpty(keyword)){
+            where.and(Method.where(ArticleComment::getContent, C.LIKE, keyword)
+                    .or(ArticleComment::getNicker, C.LIKE, keyword).or(ArticleComment::getEmail, C.LIKE, keyword));
+        }
+        return articleCommentDao.list(where,
+                LeftJoin.join(Article.class, Method.where(Article::getId, C.EQ, ArticleComment::getArticleId),
+                        Article::getTitle),page, limit);
+    }
+
+    @Override
+    public void del(int id) {
+        ArticleComment comment = articleCommentDao.get(id);
+        if (null != comment){
+            comment.setDeleted(true);
+            articleCommentDao.update(comment);
+        }
+    }
+
+    @Override
+    public void updateStatus(ArticleComment comment) {
+        ArticleComment dbComment = articleCommentDao.get(comment.getId());
+        if (null != dbComment){
+            dbComment.setStatus(comment.getStatus());
+            articleCommentDao.update(dbComment);
+        }
     }
 }
