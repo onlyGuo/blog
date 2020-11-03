@@ -38,9 +38,9 @@
             </div>
         </div>
         <div class="layui-card-body">
-<#--            <div style="padding-bottom: 10px;">-->
-<#--                <button class="layui-btn layuiadmin-btn-useradmin" data-type="add" id="add-classify-btn">添加</button>-->
-<#--            </div>-->
+            <div style="padding-bottom: 10px;">
+                <button class="layui-btn layuiadmin-btn-useradmin" data-type="add" id="add-classify-btn">添加</button>
+            </div>
             <table id="classify-list-mgr" lay-filter="classify-list-mgr"></table>
             <script type="text/html" id="checkboxTpl">
                 <span> {{d.status == 1 ? '通过' : (d.status == -1 ? '驳回': '待审核')}}</span>
@@ -65,7 +65,7 @@
         // 初始化列表
         table.render({
             elem: '#classify-list-mgr'
-            ,url: '${ctx}/api/v1/comment' //模拟接口
+            ,url: '${ctx}/api/v1/rule' //模拟接口
             ,cols: [[
                 {field: 'id', width: 100, title: 'ID', sort: true}
                 ,{field: 'parentId', title: '过滤词汇'}
@@ -122,6 +122,32 @@
                     })
                 });
             }
+        });
+
+
+        $("#add-classify-btn").click(function () {
+            layer.open({
+                type: 2
+                ,title: '添加规则'
+                ,content: '${ctx}/admin/rule-from'
+                ,maxmin: true
+                ,area: ['450px', '500px']
+                ,btn: ['确定', '取消']
+                ,yes: function(index, layero){
+                    var iframeWindow = window['layui-layer-iframe'+ index]
+                        ,submitID = 'LAY-user-front-submit'
+                        ,submit = layero.find('iframe').contents().find('#'+ submitID);
+
+                    //监听提交
+                    iframeWindow.layui.form.on('submit('+ submitID +')', function(data){
+                        H.post("${ctx}/api/v1/classify", data.field, function () {
+                            table.reload('classify-list-mgr'); //数据刷新
+                            layer.close(index); //关闭弹层
+                        });
+                    });
+                    submit.trigger('click');
+                }
+            });
         });
 
     });

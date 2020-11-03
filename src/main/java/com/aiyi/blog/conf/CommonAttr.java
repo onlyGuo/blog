@@ -33,4 +33,19 @@ public interface CommonAttr {
          */
         String VALIDATION_CODE = "VALI_CODE";
     }
+
+    /**
+     * 开关等逻辑功能状态
+     */
+    interface SWITCH{
+        /**
+         * 开启
+         */
+        int ON = 1;
+        /**
+         * 关闭
+         */
+        int OFF = 0;
+    }
+
 }

@@ -124,4 +124,14 @@ public class AdminController {
         return "admin/rule";
     }
 
+    /**
+     * 规则编辑
+     * @param model
+     * @return
+     */
+    @RequestMapping("rule-from")
+    public String ruleFrom(Model model){
+        return "admin/rule-from";
+    }
+
 }
