@@ -12,11 +12,11 @@
     <div class="sc-body" id="sc-body">
         <div class="bg">
             <div id="img-tc"></div>
-            <img data-stellar-ratio="2" src="${ctx}/static/libs/images/banner.png" id="bg-img">
+            <img data-stellar-ratio="2" src="${ctx}/static/libs/images/banner.jpg" id="bg-img">
         </div>
         <div class="body" data-stellar-ratio="1">
             <div class="home-left">
-                <div class="box user-box">
+                <div class="box user-box" id="user-box">
                     <img src="${ctx}/static/libs/images/head-big.png" class="head-big">
                     <div class="information">
                         <p class="nicker">John Stone</p>
@@ -78,6 +78,7 @@
         let titleBody = document.getElementsByClassName("body")[0];
         let bgImg = document.getElementById("bg-img");
         let homeRight = document.getElementsByClassName("home-right")[0];
+        let leftUserBox = document.getElementById("user-box");
         window.onresize = function (){
             window.scroll(0, 0);
             setTimeout(() => {
@@ -96,13 +97,13 @@
             }
             console.log(bgImg.offsetHeight,888888)
             if (document.documentElement.scrollTop - bgImg.offsetHeight <= -60){
-                leftBox.style.position = "relative";
                 homeRight.style.paddingLeft = "0";
+                leftBox.style.position = "relative";
                 leftBox.style.top = "0px";
             }else{
                 leftBox.style.position = 'fixed';
                 leftBox.style.top = "60px";
-                homeRight.style.paddingLeft = "505px";
+                homeRight.style.paddingLeft = "305px";
             }
         }
 

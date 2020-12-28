@@ -1,9 +1,10 @@
 server:
-  port: 8080
+  port: 8081
 spring:
   datasource:
     username: root
-    password: root
+#    password: root
+    password: guoshengkai
     url: jdbc:mysql://localhost:3306/blog?serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
   freemarker:
@@ -15,3 +16,5 @@ mybatis:
 logging:
   level:
     com.aiyi.blog: DEBUG
+  file:
+    name: logs/blog.log

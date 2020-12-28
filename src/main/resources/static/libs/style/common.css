@@ -244,11 +244,11 @@ body{
 }
 .home-left{
     display: inline-block;
-    width: 500px;
+    width: 300px;
     vertical-align: top;
 }
 .home-right{
-    width: calc(100% - 510px);
+    width: calc(100% - 310px);
     display: inline-block;
     /*float: right;*/
 }
@@ -266,9 +266,9 @@ body{
     background: #25292E;
 }
 .head-big{
-    width: 283px;
-    height: 283px;
-    margin: 40px auto auto auto;
+    width: 200px;
+    height: 200px;
+    margin: 20px auto auto auto;
     display: block;
     background: #D8D8D8;
     box-shadow: 0 40px 20px -20px rgba(10, 20, 26, 0.16);
@@ -306,6 +306,10 @@ body{
     font-weight: bold;
     color: #FFFFFF;
     line-height: 31px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    overflow: hidden;
 }
 .title-right h1 a{
     color: white;
@@ -356,6 +360,7 @@ body{
 }
 .sc-body .bg{
     width: 100%;
+    min-width: 1280px;
     height: 880px;
     display: block;
     top: 0;

@@ -126,9 +126,11 @@ public class RequestThreadFilterConf implements HandlerInterceptor {
         }
         if (StringUtils.isEmpty(token)){
             Cookie[] cookies = request.getCookies();
-            for (Cookie cookie: cookies){
-                if (null != cookie && "token".equals(cookie.getName())){
-                    token = cookie.getValue();
+            if (null != cookies){
+                for (Cookie cookie: cookies){
+                    if (null != cookie && "token".equals(cookie.getName())){
+                        token = cookie.getValue();
+                    }
                 }
             }
         }
@@ -138,5 +140,10 @@ public class RequestThreadFilterConf implements HandlerInterceptor {
             }
         }
         return token;
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+
     }
 }

@@ -29,7 +29,7 @@
             </div>
         </div>
     </div>
-    <div class="home-right" style="padding-left: 505px">
+    <div class="home-right" style="padding-left: 305px">
         <div class="box article-box">
             <h1 class="title">${article.title}</h1>
             <div class="author">

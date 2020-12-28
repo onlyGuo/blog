@@ -103,7 +103,7 @@
             }else{
                 leftBox.style.position = 'fixed';
                 leftBox.style.top = "60px";
-                homeRight.style.paddingLeft = "505px";
+                homeRight.style.paddingLeft = "305px";
             }
         }
 
