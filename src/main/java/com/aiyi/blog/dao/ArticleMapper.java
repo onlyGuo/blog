@@ -36,6 +36,7 @@ public interface ArticleMapper {
             "    blog_article.create_time AS createTime,\n" +
             "    blog_article.update_time AS updateTime,\n" +
             "    blog_article.display_count AS displayCount,\n" +
+            "    blog_article.cover_image AS coverImage,\n" +
             "    GROUP_CONCAT(blog_classify.`name`) AS classifyName\n" +
             "FROM\n" +
             "    blog_article AS blog_article\n" +

@@ -16,6 +16,14 @@
             <div class="layui-card-header">文章编辑</div>
             <div class="layui-card-body" style="padding: 15px;">
                 <form class="layui-form" action="" lay-filter="component-form-group">
+                    <div class="layui-form-item" pane="">
+                        <label class="layui-form-label">封面图片</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="coverImage" autocomplete="off"
+                                   value="${(article.coverImage)!''}" placeholder="请输入封面图片" class="layui-input">
+                        </div>
+                    </div>
+
                     <div class="layui-form-item">
                         <label class="layui-form-label">文章标题</label>
                         <div class="layui-input-block">
@@ -78,7 +86,8 @@
                 doc: data.field['test-editor-markdown-doc'],
                 content: data.field['test-editor-html-code'],
                 id: '${(article.id)! "0"}',
-                classifyIds: []
+                classifyIds: [],
+                coverImage: data.field.coverImage
             };
             let classifyDoms = $(".input-classify:checked");
             for (let i = 0; i < classifyDoms.length; i++){

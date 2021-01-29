@@ -37,7 +37,12 @@
                 <#list articleList.list as article>
                     <div class="box">
                         <div class="title-left">
-                            <img src="${ctx}/static/libs/images/head-big.png">
+                            <#if article.coverImage??>
+                                <img src="${article.coverImage}">
+                            <#else>
+                                <img src="${ctx}/static/libs/images/head-big.png">
+                            </#if>
+
                             <p>${WEB_SITE.nicker}</p>
                         </div>
                         <div class="title-right">

@@ -154,3 +154,7 @@ alter table blog_article
 alter table blog_webset
     add nicker varchar(20) null;
 UPDATE blog.blog_webset t SET t.nicker = '芦苇小白' WHERE t.id = 1
+
+-- 增加封面图片
+alter table blog_article
+    add cover_image varchar(255) null comment '封面图片';

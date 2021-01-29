@@ -44,6 +44,9 @@ public class Article extends PO {
 
     private boolean deleted;
 
+    @FieldName(name = "cover_image")
+    private String coverImage;
+
     @TempField
     private List<Integer> classifyIds;
 
@@ -147,5 +150,13 @@ public class Article extends PO {
 
     public void setDisplayCount(long displayCount) {
         this.displayCount = displayCount;
+    }
+
+    public String getCoverImage() {
+        return coverImage;
+    }
+
+    public void setCoverImage(String coverImage) {
+        this.coverImage = coverImage;
     }
 }
