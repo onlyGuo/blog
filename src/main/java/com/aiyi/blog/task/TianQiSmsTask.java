@@ -77,8 +77,8 @@ public class TianQiSmsTask {
 
 
         try {
-            Credential cred = new Credential("",
-                    "");
+            Credential cred = new Credential("AKID9ApWzIAjnhME6mwaqtgNIB2gATaSjSgX",
+                    "iPbcuzrVv1zkIchkfiurmZ7eJXVyBVbS");
             SmsClient client = new SmsClient(cred, "ap-guangzhou");
             SendSmsRequest req = new SendSmsRequest();
             req.setSmsSdkAppid("1400461161");

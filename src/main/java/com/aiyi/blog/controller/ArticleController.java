@@ -6,7 +6,9 @@ import com.aiyi.blog.entity.Classify;
 import com.aiyi.blog.service.ArticleCommentService;
 import com.aiyi.blog.service.ArticleService;
 import com.aiyi.blog.service.ClassifyService;
+import com.aiyi.blog.service.record.RecordService;
 import com.aiyi.core.beans.ResultPage;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +33,9 @@ public class ArticleController {
     @Resource
     private ClassifyService classifyService;
 
+    @Resource
+    private RecordService recordService;
+
 
     /**
      * 文章详情页面
@@ -45,6 +50,10 @@ public class ArticleController {
         if (null == article){
             return "404";
         }
+
+        // 记录相关信息
+        recordService.recordArticle(articleId);
+
         model.addAttribute("article", article);
         model.addAttribute("validationIndex", UUID.randomUUID().toString().replace("-", ""));
         model.addAttribute("comments", articleCommentService.list(articleId));

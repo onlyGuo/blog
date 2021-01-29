@@ -39,6 +39,9 @@ public class Article extends PO {
     @FieldName(name = "update_time")
     private Date updateTime;
 
+    @FieldName(name = "display_count")
+    private long displayCount;
+
     private boolean deleted;
 
     @TempField
@@ -136,5 +139,13 @@ public class Article extends PO {
 
     public void setClassifyList(List<Classify> classifyList) {
         this.classifyList = classifyList;
+    }
+
+    public long getDisplayCount() {
+        return displayCount;
+    }
+
+    public void setDisplayCount(long displayCount) {
+        this.displayCount = displayCount;
     }
 }
