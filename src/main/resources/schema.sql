@@ -145,3 +145,12 @@ INSERT INTO `blog_webset` VALUES (1, '天涯客栈', 0, 0, '首页', 'java,天�
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+-- 增加阅读数统计
+alter table blog_article
+    add display_count bigint default 0 null;
+
+-- 增加网站默认昵称
+alter table blog_webset
+    add nicker varchar(20) null;
+UPDATE blog.blog_webset t SET t.nicker = '芦苇小白' WHERE t.id = 1

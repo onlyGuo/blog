@@ -35,11 +35,11 @@
             <div class="author">
                 <img src="${ctx}/static/libs/images/head-big.png" class="head-img">
                 <div class="author-right">
-                    <h1 class="author-name">John Stone</h1>
+                    <h1 class="author-name">${WEB_SITE.nicker}</h1>
                     <div class="title-info">
                         <span>${article.createTime}</span>
                         <span>
-                            <img src="${ctx}/static/libs/images/eye.svg"> 1642
+                            <img src="${ctx}/static/libs/images/eye.svg"> ${article.displayCount}
                         </span>
                     </div>
                 </div>

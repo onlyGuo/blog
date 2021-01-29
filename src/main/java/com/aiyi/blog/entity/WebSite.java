@@ -68,6 +68,11 @@ public class WebSite extends PO {
      */
     private String license;
 
+    /**
+     * 默认昵称
+     */
+    private String nicker;
+
     public int getId() {
         return id;
     }
@@ -146,5 +151,13 @@ public class WebSite extends PO {
 
     public void setDomain(String domain) {
         this.domain = domain;
+    }
+
+    public String getNicker() {
+        return nicker;
+    }
+
+    public void setNicker(String nicker) {
+        this.nicker = nicker;
     }
 }

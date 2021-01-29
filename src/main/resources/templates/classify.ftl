@@ -20,7 +20,7 @@
                 <div class="box user-box">
                     <img src="${ctx}/static/libs/images/head-big.png" class="head-big">
                     <div class="information">
-                        <p class="nicker">John Stone</p>
+                        <p class="nicker">${WEB_SITE.nicker}</p>
                         <p class="create-time">1996-04-04</p>
                         <p class="create-time">中国 河北</p>
                     </div>
@@ -39,7 +39,7 @@
                     <div class="box">
                         <div class="title-left">
                             <img src="${ctx}/static/libs/images/head-big.png">
-                            <p>John Stone</p>
+                            <p>${WEB_SITE.nicker}</p>
                         </div>
                         <div class="title-right">
                             <h1><a href="${ctx}/article/${article.id}">${article.title}</a></h1>

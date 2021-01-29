@@ -28,6 +28,12 @@
                 </div>
               </div>
               <div class="layui-form-item">
+                <label class="layui-form-label">默认昵称</label>
+                <div class="layui-input-block">
+                  <input type="text" name="nicker" value="${website.nicker !''}" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
                 <label class="layui-form-label">网站域名</label>
                 <div class="layui-input-block">
                   <input type="text" name="domain" value="${website.domain !''}" class="layui-input">
