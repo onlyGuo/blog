@@ -19,7 +19,7 @@
       <div class="layui-col-sm6 layui-col-md3">
         <div class="layui-card">
           <div class="layui-card-header">
-            访问量
+            整站访问量
             <span class="layui-badge layui-bg-blue layuiadmin-badge">周</span>
           </div>
           <div class="layui-card-body layuiadmin-card-list">
@@ -38,10 +38,10 @@
             <span class="layui-badge layui-bg-cyan layuiadmin-badge">月</span>
           </div>
           <div class="layui-card-body layuiadmin-card-list">
-            <p class="layuiadmin-big-font">33,555</p>
+            <p class="layuiadmin-big-font">${commentCount}</p>
             <p>
               新评论
-              <span class="layuiadmin-span-color">10% <i class="layui-inline layui-icon layui-icon-face-smile-b"></i></span>
+              <span class="layuiadmin-span-color">${newComment}% <i class="layui-inline layui-icon layui-icon-face-smile-b"></i></span>
             </p>
           </div>
         </div>
@@ -54,7 +54,7 @@
           </div>
           <div class="layui-card-body layuiadmin-card-list">
 
-            <p class="layuiadmin-big-font">999,666</p>
+            <p class="layuiadmin-big-font">${yearArticleCount}</p>
             <p>
               待审核
               <span class="layuiadmin-span-color">0 <i class="layui-inline layui-icon layui-icon-dollar"></i></span>
@@ -81,7 +81,7 @@
       <div class="layui-col-sm12">
         <div class="layui-card">
           <div class="layui-card-header">
-            访问量
+            文章访问量
           </div>
           <div class="layui-card-body">
             <div class="layui-row">

@@ -46,4 +46,10 @@ public interface ArticleService {
      *      文章信息
      */
     void update(Article article);
+
+    /**
+     * 近一年文章数量
+     * @return
+     */
+    long yearCount();
 }

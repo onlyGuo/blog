@@ -15,6 +15,7 @@ import com.aiyi.core.beans.ResultPage;
 import com.aiyi.core.beans.WherePrams;
 import com.aiyi.core.exception.ValidationException;
 import com.aiyi.core.sql.where.C;
+import com.aiyi.core.util.DateUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -108,6 +109,11 @@ public class ArticleSerivceImpl implements ArticleService {
             articleClassify.setClassifyId(id);
             articleClassifyDao.add(articleClassify);
         }
+    }
+
+    @Override
+    public long yearCount() {
+        return articleDao.count(Method.where(Article::getCreateTime, C.DE, new Date(System.currentTimeMillis() - DateUtil.DAY_TIME * 365)));
     }
 
     private void builderArticle(Article article){

@@ -1,11 +1,16 @@
 package com.aiyi.blog.controller;
 
 import com.aiyi.blog.assets.NoLogin;
+import com.aiyi.blog.dao.ArticleCommentDao;
 import com.aiyi.blog.entity.Article;
+import com.aiyi.blog.entity.ArticleComment;
 import com.aiyi.blog.service.ArticleService;
 import com.aiyi.blog.service.ClassifyService;
 import com.aiyi.blog.service.StatisticsService;
 import com.aiyi.blog.service.WebSiteService;
+import com.aiyi.core.beans.Method;
+import com.aiyi.core.sql.where.C;
+import com.aiyi.core.util.DateUtil;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import java.io.ByteArrayOutputStream;
+import java.util.Date;
 
 @Controller
 @RequestMapping("admin")
@@ -32,6 +38,9 @@ public class AdminController {
     @Resource
     private StatisticsService statisticsService;
 
+    @Resource
+    private ArticleCommentDao articleCommentDao;
+
 
     @RequestMapping
     public String index(){
@@ -46,6 +55,19 @@ public class AdminController {
     public String console(Model model){
         model.addAttribute("weekVisit", statisticsService.weekVisit());
         model.addAttribute("allVisit", statisticsService.allVisit());
+        // 近30天评论
+        long commentCount = articleCommentDao.count(Method
+                .where(ArticleComment::getCreateTime, C.DE, new Date(System.currentTimeMillis() - DateUtil.DAY_TIME * 30)));
+        model.addAttribute("commentCount", commentCount);
+        // 新评占比
+        long allCount = articleCommentDao.count(Method.createDefault());
+        if (0 == allCount){
+            model.addAttribute("newComment", 0);
+        }else{
+            model.addAttribute("newComment", commentCount / allCount * 100);
+        }
+        // 年文章
+        model.addAttribute("yearArticleCount", articleService.yearCount());
         return "admin/console";
     }
 
