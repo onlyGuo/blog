@@ -3,6 +3,7 @@ package com.aiyi.blog.conf;
 import com.aiyi.blog.assets.NoLogin;
 import com.aiyi.blog.entity.User;
 import com.aiyi.blog.service.WebSiteService;
+import com.aiyi.blog.task.LogTask;
 import com.aiyi.blog.util.cache.CacheUtil;
 import com.aiyi.blog.util.cache.Key;
 import com.aiyi.core.SpringBootApplicationUtil;
@@ -38,6 +39,9 @@ public class RequestThreadFilterConf implements HandlerInterceptor {
 
     @Resource
     private WebSiteService webSiteService;
+
+    @Resource
+    private LogTask logTask;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
@@ -87,6 +91,7 @@ public class RequestThreadFilterConf implements HandlerInterceptor {
      *          当前用户
      */
     private void initContext(HttpServletRequest request, User user, HttpServletResponse response){
+        logTask.log();
         request.setAttribute("ctx", request.getContextPath());
         request.setAttribute("location", request.getRequestURI());
         if (null != user){

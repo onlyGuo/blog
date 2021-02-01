@@ -4,6 +4,7 @@ import com.aiyi.blog.assets.NoLogin;
 import com.aiyi.blog.entity.Article;
 import com.aiyi.blog.service.ArticleService;
 import com.aiyi.blog.service.ClassifyService;
+import com.aiyi.blog.service.StatisticsService;
 import com.aiyi.blog.service.WebSiteService;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,9 @@ public class AdminController {
     @Resource
     private ArticleService articleService;
 
+    @Resource
+    private StatisticsService statisticsService;
+
 
     @RequestMapping
     public String index(){
@@ -39,7 +43,9 @@ public class AdminController {
      * @return
      */
     @RequestMapping("console")
-    public String console(){
+    public String console(Model model){
+        model.addAttribute("weekVisit", statisticsService.weekVisit());
+        model.addAttribute("allVisit", statisticsService.allVisit());
         return "admin/console";
     }
 

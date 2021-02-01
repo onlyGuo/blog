@@ -158,3 +158,11 @@ UPDATE blog.blog_webset t SET t.nicker = '芦苇小白' WHERE t.id = 1
 -- 增加封面图片
 alter table blog_article
     add cover_image varchar(255) null comment '封面图片';
+
+-- 增加基本访问量统计
+create table blog_log
+(
+    id          bigint auto_increment
+        primary key,
+    create_time datetime null
+);
