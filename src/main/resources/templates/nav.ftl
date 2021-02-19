@@ -56,7 +56,68 @@
     </div>
 </#if>
 
+<!-- 小冰 -->
+<div class="chat" id="chat">
+    <img src="/static/libs/images/imgres.png">
+</div>
+<div class="chat-box">
+    <div class="title">与人工智能【微软小冰】对话<span class="close">X</span></div>
+    <iframe src="/static/bing-chat.html" style="
+        overflow: hidden;
+        border: none;
+        height: calc(100% - 40px);
+        min-height: 360px;
+        width: 100%">
+    </iframe>
+</div>
+
+<style>
+    .chat{
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background-color: white;
+        border-radius: 50%;
+        cursor: pointer;
+        overflow: hidden;
+    }
+    .chat img{
+        height: 60px;
+        width: 60px;
+    }
+    .chat-box{
+        position: fixed;
+        min-height: 400px;
+        min-width: 500px;
+        z-index: 10;
+        left: calc(50% - 250px);
+        top: 100px;
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, .8);
+        display: none;
+    }
+    .chat-box .title{
+        text-align: center;
+        background-color: #25292E;
+        line-height: 40px;
+        color: white;
+        cursor: default;
+    }
+    .chat-box .title span{
+        display: inline-block;
+        float: right;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+</style>
+
+
 <script src="${ctx}/static/libs/script/jquery-2.0.2.js"></script>
+<script src="${ctx}/static/libs/script/move.js"></script>
 <script>
     // 弹出登录窗口
 
@@ -123,4 +184,33 @@
         let expires = "expires=" + d.toUTCString();
         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     }
+
+    // 打开聊天窗口
+    $("#chat").click(function (){
+        $(".chat-box").css("display", "block");
+    });
+
+    // 移动窗口
+    let down = false;
+    let $title = $(".chat-box .title");
+    let initLeft = 0;
+    let initTop = 0;
+    let $box = $(".chat-box");
+    $title.mousedown(function (a){
+        initLeft = a.offsetX;
+        initTop = a.offsetY;
+        down = true;
+    });
+    $title.mouseup(function (){
+        down = false;
+    });
+    $title.mousemove(function (a){
+        if (down){
+            $box.css("left", a.clientX - initLeft);
+            $box.css("top", a.clientY - initTop);
+        }
+    });
+    $(".chat-box .title span.close").click(function (){
+        $(".chat-box").css("display", "none");
+    });
 </script>
