@@ -98,12 +98,14 @@ public class ArticleSerivceImpl implements ArticleService {
             create(article);
             return;
         }
-        article.setCreateTime(dbArticle.getCreateTime());
-        articleDao.update(article);
+        dbArticle.setOutline(article.getOutline());
+        dbArticle.setUpdateTime(new Date());
+        dbArticle.setClassifyIds(article.getClassifyIds());
+        articleDao.update(dbArticle);
 
         // 添加关联
         articleClassifyDao.del(Method.where(ArticleClassify::getArticleId, C.EQ, article.getId()));
-        for (Integer id: article.getClassifyIds()){
+        for (Integer id: dbArticle.getClassifyIds()){
             ArticleClassify articleClassify = new ArticleClassify();
             articleClassify.setArticleId(article.getId());
             articleClassify.setClassifyId(id);
